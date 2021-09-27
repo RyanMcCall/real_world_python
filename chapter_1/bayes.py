@@ -1,7 +1,7 @@
 import sys
 import random
 import itertools
-import numpy as numpy
+import numpy as np
 import cv2 as cv
 
 MAP_FILE = "cape_python.png"
@@ -90,13 +90,13 @@ class Search:
     def sailor_final_location(self, num_search_areas):
         """Return the actual x,y location of the missing sailor."""
 
-        #Find sailor coordinates with respect to any Search Area subarray.
+        # Find sailor coordinates with respect to any Search Area subarray.
         self.sailor_actual[0] = np.random.choice(self.sa1.shape[1], 1)
         self.sailor_actual[1] = np.random.choice(self.sa1.shape[0], 1)
 
         area = int(random.triangular(1, num_search_areas + 1))
 
-        if area = 1:
+        if area == 1:
             x = self.sailor_actual[0] + SA1_CORNERS[0]
             y = self.sailor_actual[1] + SA1_CORNERS[1]
             self.area_actual = 1
@@ -110,5 +110,3 @@ class Search:
             self.area_actual = 3
 
         return x, y
-
-        
