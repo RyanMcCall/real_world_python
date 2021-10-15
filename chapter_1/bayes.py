@@ -111,6 +111,7 @@ class Search:
 
         return x, y
 
+
     def calc_search_effectiveness(self):
         """Set decimal search effectiveness value per search area."""
 
@@ -166,3 +167,53 @@ def main():
     print("\nInitial Target (P) Probabilities:")
     print("P1 = {:.3f}, P2 = {:.3f}, P3 = {:.3f}".format(app.p1, app.p2, app.p3))
     search_num = 1
+
+    while True:
+        app.calc_search_effectiveness()
+        draw_menu(search_num)
+        choice = input("Choice: ")
+
+        if choice == "0":
+            sys.exit()
+        
+        elif choice == "1":
+            results_1, coords_1 = app.conduct_search(1, app.sa1, app.sep1)
+            results_2, coords_2 == app.conduct_search(1, app.sa1, app.sep1)
+            app.sep1 = (len(set(coords_1 + coords_2))) / (len(app.sa1)**2)
+            app.sep2 = 0
+            app.sep3 = 0
+
+        elif choice == "2":
+            results_1, coords_1 = app.conduct_search(2, app.sa2, app.sep2)
+            results_2, coords_2 = app.conduct_search(2, app.sa2, app.sep2)
+            app.sep1 = 0
+            app.sep2 = (len(set(coords_1 + coords_2))) / (len(app.sa2)**2)
+            app.sep3 = 0
+
+        elif choice == "3":
+            results_1, coords_1 = app.conduct_search(3, app.sa3, app.sep3)
+            results_2, coords_2 = app.conduct_search(3, app.sa3, app.sep3)
+            app.sep1 = 0
+            app.sep2 = 0
+            app.sep3 = (len(set(coords_1 + coords_2))) / (len(app.sa3)**2)
+
+        elif choice == "4":
+            results_1, coords_1 = app.conduct_search(1, app.sa1, app.sep1)
+            results_2, coords_2 = app.conduct_search(2, app.sa2, app.sep2)
+            app.sep3 = 0
+
+        elif choice == "5":
+            results_1, coords_1 = app.conduct_search(1, app.sa1, app.sep1)
+            results_2, coords_2 = app.conduct_search(3, app.sa3, app.sep3)
+            app.sep2 = 0
+
+        elif choice == 6:
+            results_1, coords_1 = app.conduct_search(2, app.sa2, app.sep2)
+            results_2, coords_2 = app.conduct_search(3, app.sa3, app.sep3)
+
+        elif choice == "7":
+            main()
+
+        else:
+            print("\nSorry, but that isn't a valid choice.", file=sys.stderr)
+            continue
